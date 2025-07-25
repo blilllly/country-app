@@ -1,0 +1,32 @@
+<nav class="p-4 w-full">
+  <ul class="menu bg-base-200 sm:menu-horizontal rounded-box">
+
+    @for (option of menuOptions(); track option.id) {
+
+      <li>
+        <a
+          class="btn"
+          [routerLink]="option.route"
+          routerLinkActive="btn-primary"
+          >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="21"
+            height="21"
+            viewBox="0 0 24 24"
+          >
+            <path
+              fill="none"
+              stroke="currentColor"
+              [attr.d]="option.d"
+              stroke-width="1"
+            />
+          </svg>
+          {{ option.label | titlecase }}
+        </a>
+      </li>
+
+    }
+
+  </ul>
+</nav>

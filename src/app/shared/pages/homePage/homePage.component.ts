@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'home-page',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './homePage.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
