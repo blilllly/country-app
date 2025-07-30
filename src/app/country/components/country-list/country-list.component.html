@@ -28,12 +28,47 @@
           </td>
           <td>{{ country.name }}</td>
           <td>{{ country.capital }}</td>
-          <td>{{ country.population }}</td>
           <td>
-            <a class="link-primary">Mas Información<nav></nav></a>
+            <span class="badge badge-secondary">
+              {{ country.population | number: '1.0-0'}}
+            </span>
+          </td>
+          <td>
+            <a
+              [routerLink]="['/country/by', country.cca2]"
+              class="link-primary">Mas Información
+            </a>
           </td>
         </tr>
       }
+
+      @if (errorMessage()) {
+        <tr>
+          <td colspan="8" class="text-center">
+            {{errorMessage()}}
+          </td>
+        </tr>
+      }
+
+      <!--  -->
+      @if (countries() === [] && !isLoaging()) {
+        <tr>
+          <td colspan="8" class="text-center">
+            No se encontraron resultados
+          </td>
+        </tr>
+      }
+
+      <!--  -->
+
+      @if (isLoaging()) {
+        <tr>
+          <td colspan="8" class="text-center">
+            <span class="loading loading-dots loading-xl"></span>
+          </td>
+        </tr>
+      }
+
     </tbody>
 
   </table>
