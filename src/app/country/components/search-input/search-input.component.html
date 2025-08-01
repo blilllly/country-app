@@ -5,15 +5,14 @@
     class="input input-bordered mr-2 w-56"
     [placeholder]="placeholder()"
     autofocus
-    [value]="value()"
-    (input)="value.set(txtSearch.value)"
-    (keyup.enter)="onSearch()"
+    (keyup.enter)="value.emit(txtSearch.value)"
+    (keyup)="inputValue.set(txtSearch.value)"
     #txtSearch
   />
 
   <button
     class="btn btn-primary"
-    (click)="onSearch()"
+    (click)="value.emit(txtSearch.value)"
     >
     Buscar
   </button>

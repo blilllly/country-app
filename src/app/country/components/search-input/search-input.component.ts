@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, effect, input, output, signal } from '@angular/core';
 
 @Component({
   selector: 'country-search-input',
@@ -8,18 +8,19 @@ import { ChangeDetectionStrategy, Component, input, output, signal } from '@angu
 })
 export class SearchInputComponent {
 
-  value = signal<string>('');
+  value = output<string>();
   placeholder = input.required<string>();
 
-  valueToSearch = output<string>();
+  inputValue = signal<string>('');
 
-  onSearch() {
-    if ( !this.value() ) return;
-    this.valueToSearch.emit(this.value());
-    this.resetFields();
-  }
+  debounceEffect = effect ( (onCleanup) => {
+    const value = this.inputValue();
+    const timeout = setTimeout( () => {
+      this.value.emit(value);
+    }, 500);
+    onCleanup(() => {
+      clearTimeout(timeout)
+    });
+  });
 
-  resetFields() {
-    this.value.set('');
-  }
 }
