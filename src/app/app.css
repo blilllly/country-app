@@ -1,0 +1,11 @@
+/* @view-transition {
+  navigation: auto;
+}
+
+::view-transition-group(*) {
+  animation-duration: 3s;
+} */
+
+/* ::view-transition-old(:root) {
+  animation: slide-out-to-left 3s forwards;
+} */
